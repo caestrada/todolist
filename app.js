@@ -14,7 +14,8 @@ app.use(express.static("public"));
 
 const ATLAS_ADMIN_USER = process.env.ATLAS_ADMIN_USER;
 const ATLAS_ADMIN_PASSWORD = process.env.ATLAS_ADMIN_PASSWORD;
-mongoose.connect(`mongodb+srv://${ATLAS_ADMIN_USER}:${ATLAS_ADMIN_PASSWORD}@cluster0.6hiiq.gcp.mongodb.net/todolistDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+const ATLAS_MONGODB_URI = process.env.ATLAS_MONGODB_URI;
+mongoose.connect(`mongodb+srv://${ATLAS_ADMIN_USER}:${ATLAS_ADMIN_PASSWORD}@${ATLAS_MONGODB_URI}`, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 const itemsSchema = {name: String};
 const Item = mongoose.model('Item', itemsSchema);
