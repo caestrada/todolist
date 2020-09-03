@@ -12,7 +12,9 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://admin-carlos:test123@cluster0.6hiiq.gcp.mongodb.net/todolistDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+const ATLAS_ADMIN_USER = process.env.ATLAS_ADMIN_USER;
+const ATLAS_ADMIN_PASSWORD = process.env.ATLAS_ADMIN_PASSWORD;
+mongoose.connect(`mongodb+srv://${ATLAS_ADMIN_USER}:${ATLAS_ADMIN_PASSWORD}@cluster0.6hiiq.gcp.mongodb.net/todolistDB?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 const itemsSchema = {name: String};
 const Item = mongoose.model('Item', itemsSchema);
